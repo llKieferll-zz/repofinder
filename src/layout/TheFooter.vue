@@ -1,5 +1,8 @@
 <template>
-  <v-footer class="pa-3" app>
+  <v-footer
+    app
+    class="pa-3"
+  >
     <v-spacer />
     <div>&copy; {{ new Date().getFullYear() }}</div>
   </v-footer>
@@ -7,10 +10,8 @@
 
 <script>
 export default {
-
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
 </style>

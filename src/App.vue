@@ -7,9 +7,11 @@
 import TheLayout from '@/layout/TheLayout'
 
 export default {
+
   components: {
     'TheLayout': TheLayout
   }
+
 }
 </script>
 

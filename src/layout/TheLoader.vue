@@ -1,14 +1,13 @@
 <template>
   <v-dialog
-    v-model="loading"
-    persistent
-    hide-overlay
-    width="300"
     lazy
+    persistent
+    v-model="loading"
+    width="300"
   >
     <v-card
-      color="primary"
       dark
+      color="primary"
     >
       <v-card-title class="title">
         Loading your stuff...
@@ -19,8 +18,14 @@
         />
       </v-card-title>
       <v-card-text>
-        <v-list class="primary" dense>
-          <v-list-tile v-for="(message, index) in messageQueue" :key="`${index}-message`">
+        <v-list
+          class="primary"
+          dense
+        >
+          <v-list-tile
+            v-for="(message, index) in messageQueue"
+            :key="`${index}-message`"
+          >
             {{message}}
           </v-list-tile>
         </v-list>
@@ -31,6 +36,7 @@
 
 <script>
 export default {
+
   data: () => ({
     messageQueue: [],
     loading: false
@@ -51,9 +57,9 @@ export default {
     this.$root.$addToLoader = this.add
     this.$root.$removeFromLoader = this.remove
   }
+
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
 </style>
