@@ -2,6 +2,7 @@
   <v-navigation-drawer
     app
     lazy
+    disable-resize-watcher
     v-model="drawer"
   >
     <v-toolbar
@@ -9,13 +10,7 @@
       dark
       color="primary"
     >
-      <v-list>
-        <v-list-tile @click="this.console.log('haha')">
-          <v-list-tile-title class="title">
-            Menu
-          </v-list-tile-title>
-        </v-list-tile>
-      </v-list>
+      <v-toolbar-title>Menu</v-toolbar-title>
     </v-toolbar>
 
     <v-divider />

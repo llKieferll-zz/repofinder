@@ -5,13 +5,12 @@
     dark
     color="primary"
   >
-    <v-toolbar-side-icon @click="$emit('toggleDrawer')" />
+    <v-toolbar-side-icon class="hidden-md-and-up" @click="$emit('toggleDrawer')" />
     <v-toolbar-title>Gitfinder</v-toolbar-title>
     <v-spacer />
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link 1</v-btn>
-      <v-btn flat>Link 2</v-btn>
-      <v-btn flat>Link 3</v-btn>
+      <v-btn flat :to="{name: 'Home'}">Home</v-btn>
+      <v-btn flat :to="{name: 'Search'}">Search</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>

@@ -4,6 +4,7 @@
     <TheToolbar @toggleDrawer="$refs.drawer.toggle()" />
     <TheLoader />
     <TheContent />
+    <TheSnackbar />
     <TheFooter />
   </v-app>
 </template>
@@ -14,6 +15,7 @@ import TheDrawer from '@/layout/TheDrawer'
 import TheLoader from '@/layout/TheLoader'
 import TheToolbar from '@/layout/TheToolbar'
 import TheContent from '@/layout/TheContent'
+import TheSnackbar from '@/layout/TheSnackbar'
 import TheFooter from '@/layout/TheFooter'
 
 export default {
@@ -23,6 +25,7 @@ export default {
     'TheLoader': TheLoader,
     'TheToolbar': TheToolbar,
     'TheContent': TheContent,
+    'TheSnackbar': TheSnackbar,
     'TheFooter': TheFooter
   }
 
