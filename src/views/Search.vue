@@ -25,7 +25,6 @@ export default {
 
   methods: {
     updateOrganizationList: function ({ results, searchInput }) {
-      console.log(results)
       if (results.length === 0) this.$root.$addToSnackbar(`No organization found for '${searchInput}'`, 'error')
       else this.organizationList = results
     }

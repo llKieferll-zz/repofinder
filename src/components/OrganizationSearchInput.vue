@@ -16,12 +16,12 @@
           label="Search for organizations"
           append-icon="search"
           @click:append="submit"
-          @focus="useSearchTip = false"
-          @blur="useSearchTip = true"
+          @focus="inputFocused = false"
+          @blur="inputFocused = true"
         />
         <v-slide-y-transition leave-absolute>
           <span
-            v-if="useSearchTip && !orgSearchInput.length && !performedSearch"
+            v-if="inputFocused && !orgSearchInput.length && !searchedOnce"
             class="subheading"
             key="1"
           >
@@ -30,7 +30,7 @@
             <v-icon style="transform: rotate(-90deg);">subdirectory_arrow_right</v-icon>
           </span>
           <span
-            v-if="!useSearchTip && !orgSearchInput.length && !performedSearch"
+            v-if="!inputFocused && !orgSearchInput.length && !searchedOnce"
             class="subheading"
             key="2"
           >
@@ -38,14 +38,14 @@
             Type the name of an organization!
           </span>
           <span
-            v-if="!!orgSearchInput.length && !performedSearch"
+            v-if="!!orgSearchInput.length && !searchedOnce"
             class="subheading"
             key="3"
           >
             Now press enter or click the <v-icon>search</v-icon> icon!
           </span>
           <span
-            v-if="performedSearch"
+            v-if="searchedOnce"
             class="subheading"
             key="4"
           >
@@ -61,15 +61,15 @@
 <script>
 export default {
   data: () => ({
-    useSearchTip: true,
-    performedSearch: false,
+    inputFocused: true,
+    searchedOnce: false,
     orgSearchInput: '',
     organizationList: []
   }),
 
   methods: {
     submit: async function () {
-      this.performedSearch = true
+      this.searchedOnce = true
       try {
         this.$emit('searchStarted', this.orgSearchInput)
         let response = await this.$axios.get('search/users', {
