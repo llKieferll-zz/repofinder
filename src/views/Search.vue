@@ -44,7 +44,7 @@
             <v-btn
               color="primary"
               icon
-              @click="showSearchInput = true"
+              @click="filterInput = ''; showSearchInput = true"
             >
               <v-icon>search</v-icon>
             </v-btn>
