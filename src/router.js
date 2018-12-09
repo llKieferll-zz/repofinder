@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       path: '/organization',
-      component: load('RouteWrapper'),
+      component: load('OrganizationRouteWrapper'),
       children: [
         {
           path: '',
@@ -34,9 +34,21 @@ export default new Router({
         },
         {
           path: ':org',
-          name: 'Organization',
           component: load('Organization'),
-          props: true
+          props: true,
+          children: [
+            {
+              path: '',
+              name: 'Repositories',
+              component: load('Repositories')
+            },
+            {
+              path: ':repository',
+              name: 'Repository',
+              component: load('Repository'),
+              props: true
+            }
+          ]
         }
       ]
     }

@@ -1,14 +1,14 @@
 <template>
   <v-slide-y-transition
-    class="v-list v-list--two-line pt-4"
+    class="v-list v-list--two-line"
     group
     tag="div"
   >
     <div
-      v-for="(repository, index) in list"
+      v-for="(branch, index) in list"
       :key="index"
     >
-      <RepositoryListItem :repository="repository" />
+      <BranchListItem :branch="branch" />
     </div>
   </v-slide-y-transition>
 </template>
@@ -24,7 +24,7 @@ export default {
   },
 
   components: {
-    RepositoryListItem: () => import('@/components/repository/RepositoryListItem')
+    BranchListItem: () => import('@/components/branch/BranchListItem')
   }
 
 }

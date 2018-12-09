@@ -6,6 +6,7 @@ import axios from 'axios'
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || ''
 axios.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json'
+if (process.env.VUE_APP_OAUTH_TOKEN) axios.defaults.headers.common['Authorization'] = `token ${process.env.VUE_APP_OAUTH_TOKEN}`
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 let config = {

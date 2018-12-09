@@ -3,6 +3,7 @@
     <v-list-tile
       slot-scope="{ hover }"
       :class="`elevation-${hover ? 6 : 0} repository-list-item`"
+      :to="{name: 'Repository', params: { repository: repository.name } }"
     >
       <v-list-tile-content>
         <v-list-tile-title class="title">{{repository.name}}</v-list-tile-title>
@@ -21,13 +22,26 @@
         </v-list-tile-sub-title>
       </v-list-tile-content>
       <v-list-tile-action>
-        <v-layout column align-end>
+        <v-layout
+          column
+          align-end
+        >
           <v-tooltip left>
-            <span slot="activator" class="caption justify-end">{{repository.forks}} <v-icon small color="success">call_split</v-icon></span>
+            <span
+              slot="activator"
+              class="caption justify-end"
+            >
+              {{repository.forks}} <v-icon small color="success">call_split</v-icon>
+            </span>
             <span>Forks</span>
           </v-tooltip>
           <v-tooltip left>
-            <span slot="activator" class="caption justify-end">{{repository.stars}} <v-icon small color="warning">star</v-icon></span>
+            <span
+              slot="activator"
+              class="caption justify-end"
+            >
+              {{repository.stars}} <v-icon small color="warning">star</v-icon>
+            </span>
             <span>Stars</span>
           </v-tooltip>
         </v-layout>

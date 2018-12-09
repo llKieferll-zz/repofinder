@@ -1,7 +1,16 @@
 <template>
-  <v-layout column align-center>
-    <OrganizationListSortControl v-show="!!list.length" @change="propertyToSort = $event"/>
-    <v-container v-bind="{ [`grid-list-${$vuetify.breakpoint.name}`]: true }" fluid>
+  <v-layout
+    column
+    align-center
+  >
+    <OrganizationListSortControl
+      v-show="!!list.length"
+      @change="propertyToSort = $event"
+    />
+    <v-container
+      fluid
+      v-bind="{ [`grid-list-${$vuetify.breakpoint.name}`]: true }"
+    >
       <v-slide-y-transition
         group
         appear

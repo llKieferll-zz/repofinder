@@ -2,7 +2,7 @@
   <v-card
     height="100%"
     color="#f0f0f0"
-    :to="{ name: 'Organization', params: { org: item.login} }"
+    :to="{ name: 'Repositories', params: { org: item.login} }"
   >
     <v-img
       contain
@@ -16,13 +16,19 @@
         justify-center
         class="ma-0"
       >
-        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+        <v-progress-circular
+          indeterminate
+          color="grey lighten-5"
+        />
       </v-layout>
     </v-img>
-    <v-card-actions dark class="grey white--text mt-2">
-      <v-spacer></v-spacer>
+    <v-card-actions
+      dark
+      class="grey white--text mt-2"
+    >
+      <v-spacer />
         <span class="subheading">{{item.login}}</span>
-      <v-spacer></v-spacer>
+      <v-spacer />
     </v-card-actions>
   </v-card>
 </template>
