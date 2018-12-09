@@ -36,30 +36,6 @@
 
 <script>
 export default {
-  data: () => ({
-    orgSearchInput: '',
-    organizationList: []
-  }),
-
-  methods: {
-    submit: async function () {
-      try {
-        this.$root.$addToLoader(`Searching for organizations with names similar to '${this.orgSearchInput}'`)
-        let response = await this.$axios.get('search/users', {
-          params: {
-            q: this.orgSearchInput,
-            type: 'org'
-          }
-        })
-        this.organizationList = response.data.items
-        if (this.organizationList.length === 0) this.$root.$addToSnackbar(`No organization found for '${this.orgSearchInput}'`, 'error')
-      } catch (error) {
-        this.$root.$addToSnackbar(error.response.data.message, 'error')
-      } finally {
-        this.$root.$removeFromLoader(`Searching for organizations with names similar to '${this.orgSearchInput}'`)
-      }
-    }
-  }
 }
 </script>
 

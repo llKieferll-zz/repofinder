@@ -77,9 +77,9 @@ export default {
             q: `${this.orgSearchInput} type:org`
           }
         })
-        this.$emit('resultsFound', { results: response.data.items, searchInput: this.orgSearchInput })
+        this.$emit('responseReceived', { response: response, searchInput: this.orgSearchInput })
       } catch (error) {
-        this.$emit('searchError', error.response.data.message)
+        this.$emit('searchError', error)
       } finally {
         this.$emit('searchEnded', this.orgSearchInput)
       }
