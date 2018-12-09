@@ -7,14 +7,57 @@
       justify-start
       column
     >
-      <OrganizationSearchInput
-        @searchStarted="$root.$addToLoader(`Searching for organizations with names similar to '${$event}'`)"
-        @responseReceived="updateOrganizationList"
-        @searchError="$root.$addToSnackbar($event.response.data.message, 'error')"
-        @searchEnded="$root.$removeFromLoader(`Searching for organizations with names similar to '${$event}''`)"
-      />
-      <v-divider v-show="!!organizationList.length" class="my-3" />
-      <OrganizationList v-show="!!organizationList.length" :list="organizationList" />
+      <v-slide-y-transition mode="out-in">
+        <div
+          v-if="showSearchInput"
+          class="text-xs-center"
+          key="search"
+        >
+          <OrganizationSearchInput
+            @searchStarted="$root.$addToLoader(`Searching for organizations with names similar to '${$event}'`)"
+            @responseReceived="updateOrganizationList"
+            @searchError="$root.$addToSnackbar($event.response.data.message, 'error')"
+            @searchEnded="$root.$removeFromLoader(`Searching for organizations with names similar to '${$event}''`)"
+          />
+          <span
+            v-show="!!organizationList.length"
+            class="subheading"
+          >
+            Or filter results here <v-icon small>arrow_forward</v-icon>
+            <v-btn
+              color="primary"
+              icon
+              @click="showSearchInput = false"
+            >
+              <v-icon>filter_list</v-icon>
+            </v-btn>
+          </span>
+        </div>
+        <div
+          v-else
+          class="text-xs-center"
+          key="filter"
+        >
+          <FilterInput @input="filterInput = $event" />
+          <span class="subheading">
+            Or search again here <v-icon small>arrow_forward</v-icon>
+            <v-btn
+              color="primary"
+              icon
+              @click="showSearchInput = true"
+            >
+              <v-icon>search</v-icon>
+            </v-btn>
+          </span>
+        </div>
+      </v-slide-y-transition>
+        <v-layout
+          justify-start
+          column
+        >
+          <v-divider class="my-3" />
+          <OrganizationList :list="filteredOrganizationList" />
+        </v-layout>
     </v-layout>
   </v-container>
 </template>
@@ -22,9 +65,17 @@
 <script>
 export default {
   data: () => ({
+    showSearchInput: true,
     organizationList: [],
-    pages: 0
+    pages: 0,
+    filterInput: ''
   }),
+
+  computed: {
+    filteredOrganizationList: function () {
+      return this.organizationList.filter(org => org.login.toLowerCase().includes(this.filterInput.toLowerCase()))
+    }
+  },
 
   methods: {
     updateOrganizationList: function ({ response, searchInput }) {
@@ -37,8 +88,9 @@ export default {
   },
 
   components: {
-    OrganizationSearchInput: () => import(/* webpackChunkName: "[request]Component" */ '@/components/OrganizationSearchInput'),
-    OrganizationList: () => import(/* webpackChunkName: "[request]Component" */ '@/components/OrganizationList')
+    OrganizationSearchInput: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationSearchInput'),
+    OrganizationList: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationList'),
+    FilterInput: () => import(/* webpackChunkName: "[request]Component" */ '@/components/filters/FilterInput')
   }
 }
 </script>

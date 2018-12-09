@@ -1,5 +1,9 @@
 <template>
-  <v-card height="100%" color="#f0f0f0">
+  <v-card
+    height="100%"
+    color="#f0f0f0"
+    :to="{ name: 'Organization', params: { org: item.login} }"
+  >
     <v-img
       contain
       max-height="125"

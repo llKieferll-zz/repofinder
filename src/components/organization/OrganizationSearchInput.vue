@@ -10,7 +10,7 @@
         class="text-xs-center"
       >
         <v-text-field
-          solo
+          outline
           single-line
           v-model="orgSearchInput"
           label="Search for organizations"
@@ -26,7 +26,7 @@
             key="1"
           >
             <v-icon style="transform: rotate(90deg);">subdirectory_arrow_left</v-icon>
-            Use this search bar!
+            Use this to search organizations!
             <v-icon style="transform: rotate(-90deg);">subdirectory_arrow_right</v-icon>
           </span>
           <span
@@ -49,7 +49,7 @@
             class="subheading"
             key="4"
           >
-            Good! You can use it again, as many times you want!
+            Good! You can search again if you want!
             <v-icon>mood</v-icon>
           </span>
         </v-slide-y-transition>

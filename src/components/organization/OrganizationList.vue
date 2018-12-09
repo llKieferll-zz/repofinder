@@ -1,11 +1,12 @@
 <template>
   <v-layout column align-center>
-    <OrganizationListSortControl @change="propertyToSort = $event"/>
+    <OrganizationListSortControl v-show="!!list.length" @change="propertyToSort = $event"/>
     <v-container v-bind="{ [`grid-list-${$vuetify.breakpoint.name}`]: true }" fluid>
       <v-slide-y-transition
         group
         appear
         leave-absolute
+        mode="in-out"
         class="layout row wrap justify-center"
         tag="div"
       >
@@ -47,8 +48,8 @@ export default {
   },
 
   components: {
-    OrganizationListItem: () => import(/* webpackChunkName: "[request]Component" */ '@/components/OrganizationListItem'),
-    OrganizationListSortControl: () => import(/* webpackChunkName: "[request]Component" */ '@/components/OrganizationListSortControl')
+    OrganizationListItem: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationListItem'),
+    OrganizationListSortControl: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationListSortControl')
   }
 }
 </script>

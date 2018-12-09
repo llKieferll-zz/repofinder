@@ -22,6 +22,23 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: load('Search')
+    },
+    {
+      path: '/organization',
+      component: load('RouteWrapper'),
+      children: [
+        {
+          path: '',
+          name: 'OrganizationEmpty',
+          component: load('OrganizationEmpty')
+        },
+        {
+          path: ':org',
+          name: 'Organization',
+          component: load('Organization'),
+          props: true
+        }
+      ]
     }
   ]
 })
