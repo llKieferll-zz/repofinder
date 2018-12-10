@@ -15,7 +15,7 @@ The project is live at [https://adoring-pasteur-698913.netlify.com/](https://ado
 
 # Important
 
-When running locally, it's advisable to open the `.env` file, create a variable called `VUE_APP_OAUTH_TOKEN` and set your github oauth token in it (e.g. `VUE_APP_OAUTH_TOKEN=abcdefghijkl1234567`. This is because the github api heavily limits the number of not authenticated requests that can be performed.
+When running locally, it's advisable to open the `.env` file, create a variable called `VUE_APP_OAUTH_TOKEN` and set your github oauth token in it (e.g. `VUE_APP_OAUTH_TOKEN=abcdefghijkl1234567`). This is because the github api heavily limits the number of not authenticated requests that can be performed.
 
 To create that token, follow these steps:
 
