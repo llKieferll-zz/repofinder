@@ -1,7 +1,10 @@
 <template>
   <div class="text-xs-center">
-    <v-slide-y-transition leave-absolute>
-      <div v-if="!!repositoryList.length">
+    <v-slide-y-transition leave-absolute group>
+      <div
+        v-if="!!repositoryList.length"
+        key="tip"
+      >
         <span
           class="subheading"
           key="1"
@@ -10,20 +13,20 @@
           <v-icon>mood</v-icon>
         </span>
       </div>
-    </v-slide-y-transition>
-    <v-slide-y-transition>
-      <div v-if="!!repositoryList.length">
+      <div
+        v-if="!!repositoryList.length"
+        key="pagination"
+      >
         <v-pagination
           v-model="page"
           class="pb-4"
           :length="totalPages"
         />
       </div>
-    </v-slide-y-transition>
-    <v-slide-y-transition>
       <span
         v-if="!!repositoryList.length"
         :class="$vuetify.breakpoint.smAndDown ? 'subheading' : 'display-1'"
+        key="repositories"
       >
         <v-icon
           :size="$vuetify.breakpoint.smAndDown ? '14px' : '28px'"
@@ -40,7 +43,10 @@
         </v-icon>
       </span>
     </v-slide-y-transition>
-    <RepositoryList :list="repositoryList" />
+    <RepositoryList
+      :list="repositoryList"
+      class="pt-4"
+    />
     <v-slide-y-transition>
       <div v-if="!!repositoryList.length">
         <v-pagination
@@ -52,10 +58,7 @@
     </v-slide-y-transition>
     <v-slide-y-transition leave-absolute>
       <div v-if="!!repositoryList.length">
-        <span
-          class="subheading"
-          key="1"
-        >
+        <span class="subheading">
           Yup, pages here too for your comfort
           <v-icon>mood</v-icon>
         </span>
@@ -65,10 +68,12 @@
 </template>
 
 <script>
+import parseLinkHeader from 'parse-link-header'
+
 export default {
   data: () => ({
     repositoryList: [],
-    totalPages: 0,
+    totalPages: 1,
     page: 1
   }),
 
@@ -94,7 +99,10 @@ export default {
             }
           })
         }
-        this.totalPages = Math.min(Math.ceil(repositoriesResponse.data.total_count / 30), 34)
+        if (repositoriesResponse.headers.link) {
+          let parsed = parseLinkHeader(repositoriesResponse.headers.link)
+          if (parsed.last) this.totalPages = Number(parsed.last.page)
+        }
         this.repositoryList = repositoriesResponse.data.items.map(r => {
           return {
             name: r.name,
@@ -116,7 +124,7 @@ export default {
     }
   },
 
-  async mounted () {
+  mounted () {
     this.fetchRepositories(this.organization, 1)
   },
 
@@ -134,6 +142,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
 </style>

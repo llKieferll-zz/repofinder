@@ -15,8 +15,7 @@
             color="info"
             style="height: 12px; width: 12px;"
             text-color="#333"
-          >
-          </v-chip>
+          />
           <span class="caption">{{branch.commit.author ? branch.commit.author : ' No author (are you logged in?) ' }}</span>
         </v-list-tile-sub-title>
       </v-list-tile-content>

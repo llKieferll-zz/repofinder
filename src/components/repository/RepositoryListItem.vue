@@ -16,8 +16,7 @@
             color="info"
             style="height: 12px; width: 12px;"
             text-color="#333"
-          >
-          </v-chip>
+          />
           <span class="caption">{{repository.language}}</span>
         </v-list-tile-sub-title>
       </v-list-tile-content>

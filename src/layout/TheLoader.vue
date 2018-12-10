@@ -3,14 +3,14 @@
     lazy
     persistent
     v-model="loading"
-    width="300"
+    width="350"
   >
     <v-card
       dark
       color="primary"
     >
-      <v-card-title class="title">
-        Loading your stuff...
+      <v-card-title class="headline justify-center">
+        Loading stuff...
         <v-progress-linear
           indeterminate
           color="white"
@@ -22,12 +22,22 @@
           class="primary"
           dense
         >
-          <v-list-tile
-            v-for="(message, index) in messageQueue"
-            :key="`${index}-message`"
-          >
-            {{message}}
-          </v-list-tile>
+          <template v-for="(message, index) in messageQueue">
+            <v-list-tile
+              three-line
+              dense
+              :key="`${index}-tile`"
+              class="py-2"
+            >
+              <v-list-tile-action>
+                <v-icon>fiber_manual_record</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                {{message}}
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider inset color="white" :key="`${index}-divider`"/>
+          </template>
         </v-list>
       </v-card-text>
     </v-card>
