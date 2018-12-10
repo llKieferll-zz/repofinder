@@ -7,11 +7,31 @@ Get the files on your pc and, when inside that folder, use the following command
 
 ```yarn serve```
 
-The first command, "yarn", will install everything needed. After that, "yarn serve" will start everything up using the vue cli 3 service. After everything is compiled successfully, open your browser and access the localhost url (http://localhost:8080)
+The first command, `yarn`, will install everything needed. After that, `yarn serve` will start everything up using the vue cli 3 service. After everything is compiled successfully, open your browser and access the localhost url (http://localhost:8080)
 
 Make sure you have both [yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable) and [node](https://nodejs.org/en/download/) installed before using these.
 
 The project is live at [https://adoring-pasteur-698913.netlify.com/](https://adoring-pasteur-698913.netlify.com/)
+
+# Important
+
+When running locally, it's advisable to open the `.env` file, create a variable called `VUE_APP_OAUTH_TOKEN` and set your github oauth token in it (e.g. `VUE_APP_OAUTH_TOKEN=abcdefghijkl1234567`. This is because the github api heavily limits the number of not authenticated requests that can be performed.
+
+To create that token, follow these steps:
+
+1 - Log in to Github
+2 - Click on your profile picture on the top right corner
+3 - Click on Settings
+4 - On the left stacked menu, click on Developer Settings
+5 - On the new left stacked menu, click on Personal access tokens
+6 - On the right side, click on Generate new token
+7 - If requested, input your password again
+8 - Select the appropriate settings for your new token
+9 - By the bottom of the page, click on Generate token
+
+Take note of the big numbers and letters code that was generated (once you close the page, you'll not be able to see it ever again!). That code is the value you can set to `VUE_APP_OAUTH_TOKEN` in the `.env` file. Treat that token it as any important password and never share it with anyone. 
+
+With that, the limit of requests able to be made is much higher and, because of that, the app will retrieve more information during its use (e.g. branches last commit message and author).
 
 # Considerations
 
