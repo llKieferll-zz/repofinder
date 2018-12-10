@@ -20,3 +20,5 @@ The project is live at [https://adoring-pasteur-698913.netlify.com/](https://ado
 - Lack of time completely cut down any kind of unit testing.
 
 - Fun challenge but I'm sure I would feel and perform better if it wasn't for the time constraint.
+
+- Intended to, after finishing the functionalities, make them all REST, with everything being based on the URLs themselves. Will probably do that later on even after the challenge is over. I simply feel bothered when leaving something incomplete.
