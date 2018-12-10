@@ -54,7 +54,7 @@ export default {
         this.$root.$addToSnackbar(`There is no organization named "${this.org}". Try searching for a similar name.`, 'error')
         this.$router.push({ name: 'Search' })
       } else {
-        this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
+        this.$root.$addToSnackbar(error.response.data.message, 'error')
       }
     } finally {
       this.$root.$removeFromLoader(`Looking for organization called "${this.org}"`)

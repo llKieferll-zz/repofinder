@@ -137,7 +137,7 @@ export default {
           this.organizationList = organizationsResponse.data.items
         }
       } catch (error) {
-        this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
+        this.$root.$addToSnackbar(error.response.data.message, 'error')
       } finally {
         this.$root.$removeFromLoader(`Searching for organizations with names similar to "${query}"`)
       }

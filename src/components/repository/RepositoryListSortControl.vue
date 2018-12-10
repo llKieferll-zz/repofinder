@@ -89,7 +89,7 @@ export default {
       }, []))]
       this.items.unshift('All')
     } catch (error) {
-      this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
+      this.$root.$addToSnackbar(error.response.data.message, 'error')
     } finally {
       this.$root.$removeFromLoader(`Fetching languages of repositories`)
     }

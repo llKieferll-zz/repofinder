@@ -136,7 +136,7 @@ export default {
         if (error.response.status === 404) {
           this.$root.$addToSnackbar(`No branches found in "${repository}". Is that even the correct repo name?`, 'error')
         } else {
-          this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
+          this.$root.$addToSnackbar(error.response.data.message, 'error')
         }
       } finally {
         this.$root.$removeFromLoader(`Fetching further information from each branch`)
