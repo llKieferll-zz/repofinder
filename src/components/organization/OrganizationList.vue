@@ -3,10 +3,6 @@
     column
     align-center
   >
-    <OrganizationListSortControl
-      v-show="!!list.length"
-      @change="propertyToSort = $event"
-    />
     <v-container
       fluid
       v-bind="{ [`grid-list-${$vuetify.breakpoint.name}`]: true }"
@@ -57,8 +53,7 @@ export default {
   },
 
   components: {
-    OrganizationListItem: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationListItem'),
-    OrganizationListSortControl: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationListSortControl')
+    OrganizationListItem: () => import(/* webpackChunkName: "[request]Component" */ '@/components/organization/OrganizationListItem')
   }
 }
 </script>

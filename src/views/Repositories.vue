@@ -136,7 +136,7 @@ export default {
         if (error.response.status === 404) {
           this.$root.$addToSnackbar(`Organization "${organization.name}" has no repositories.`, 'error')
         } else {
-          this.$root.$addToSnackbar(error.response.data.message, 'error')
+          this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
         }
       } finally {
         this.$root.$removeFromLoader(`Fetching repositories of "${organization.name}"`)

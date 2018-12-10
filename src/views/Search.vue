@@ -14,10 +14,7 @@
           key="search"
         >
           <OrganizationSearchInput
-            @searchStarted="$root.$addToLoader(`Searching for organizations with names similar to '${$event}'`)"
-            @responseReceived="updateOrganizationList"
-            @searchError="$root.$addToSnackbar($event.response.data.message, 'error')"
-            @searchEnded="$root.$removeFromLoader(`Searching for organizations with names similar to '${$event}''`)"
+            @search="fetchOrganizations(query = $event, 1)"
           />
           <span
             v-show="!!organizationList.length"
@@ -51,24 +48,76 @@
           </span>
         </div>
       </v-slide-y-transition>
-        <v-layout
-          justify-start
-          column
+      <v-slide-y-transition leave-absolute group class="text-xs-center">
+        <div
+          v-if="!!organizationList.length"
+          key="divider"
         >
           <v-divider class="my-3" />
+        </div>
+        <div
+          v-if="!!organizationList.length"
+          key="tip"
+        >
+          <span
+            class="subheading"
+            key="1"
+          >
+            Don't forget to check more pages
+            <v-icon>mood</v-icon>
+          </span>
+        </div>
+        <div
+          v-if="!!organizationList.length"
+          key="pagination"
+        >
+          <v-pagination
+            v-model="page"
+            class="pb-4"
+            :length="totalPages"
+          />
+        </div>
+        <span
+          v-if="!!organizationList.length"
+          :class="$vuetify.breakpoint.smAndDown ? 'subheading' : 'display-1'"
+          key="repositories"
+        >
+          <v-icon
+            :size="$vuetify.breakpoint.smAndDown ? '14px' : '28px'"
+            style="transform: rotate(90deg);"
+          >
+            subdirectory_arrow_right
+          </v-icon>
+          Organizations
+          <v-icon
+            :size="$vuetify.breakpoint.smAndDown ? '14px' : '28px'"
+            style="transform: rotate(-90deg);"
+          >
+            subdirectory_arrow_left
+          </v-icon>
+        </span>
+        <div
+          v-if="!!organizationList.length"
+          key="list"
+        >
           <OrganizationList :list="filteredOrganizationList" />
-        </v-layout>
+        </div>
+      </v-slide-y-transition>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import parseLinkHeader from 'parse-link-header'
+
 export default {
   data: () => ({
     showSearchInput: true,
     organizationList: [],
-    pages: 0,
-    filterInput: ''
+    totalPages: 1,
+    page: 1,
+    filterInput: '',
+    query: ''
   }),
 
   computed: {
@@ -78,11 +127,37 @@ export default {
   },
 
   methods: {
-    updateOrganizationList: function ({ response, searchInput }) {
-      if (response.data.items.length === 0) this.$root.$addToSnackbar(`No organization found for '${searchInput}'`, 'error')
-      else {
-        this.pages = response.data.total_count > 1020 ? 34 : Math.ceil(response.data.total_count / 30)
-        this.organizationList = response.data.items
+    fetchOrganizations: async function (query, page) {
+      try {
+        this.$root.$addToLoader(`Searching for organizations with names similar to "${query}"`)
+        let organizationsResponse = await this.$axios.get('search/users', {
+          params: {
+            q: `${query} type:org`,
+            sort: 'repositories',
+            page: page
+          }
+        })
+        if (organizationsResponse.data.items.length === 0) {
+          this.$root.$addToSnackbar(`No organization found for '${query}'`, 'error')
+        } else {
+          if (organizationsResponse.headers.link) {
+            let parsed = parseLinkHeader(organizationsResponse.headers.link)
+            if (parsed.last) this.totalPages = Number(parsed.last.page)
+          }
+          this.organizationList = organizationsResponse.data.items
+        }
+      } catch (error) {
+        this.$root.$addToSnackbar(error.response.data.errors[0].message, 'error')
+      } finally {
+        this.$root.$removeFromLoader(`Searching for organizations with names similar to "${query}"`)
+      }
+    }
+  },
+
+  watch: {
+    page: {
+      handler: function (newPage) {
+        this.fetchOrganizations(this.query, newPage)
       }
     }
   },

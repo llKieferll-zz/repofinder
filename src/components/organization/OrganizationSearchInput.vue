@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit.prevent="submit">
+  <v-form @submit.prevent="$emit('search', orgSearchInput)">
     <v-layout justify-center>
       <v-flex
         xs12
@@ -15,7 +15,7 @@
           v-model="orgSearchInput"
           label="Search for organizations"
           append-icon="search"
-          @click:append="submit"
+          @click:append="$emit('search', orgSearchInput)"
           @focus="inputFocused = false"
           @blur="inputFocused = true"
         />
@@ -63,28 +63,8 @@ export default {
   data: () => ({
     inputFocused: true,
     searchedOnce: false,
-    orgSearchInput: '',
-    organizationList: []
-  }),
-
-  methods: {
-    submit: async function () {
-      this.searchedOnce = true
-      try {
-        this.$emit('searchStarted', this.orgSearchInput)
-        let response = await this.$axios.get('search/users', {
-          params: {
-            q: `${this.orgSearchInput} type:org`
-          }
-        })
-        this.$emit('responseReceived', { response: response, searchInput: this.orgSearchInput })
-      } catch (error) {
-        this.$emit('searchError', error)
-      } finally {
-        this.$emit('searchEnded', this.orgSearchInput)
-      }
-    }
-  }
+    orgSearchInput: ''
+  })
 }
 </script>
 
