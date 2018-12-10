@@ -6,6 +6,7 @@ Before anything, make sure you have both [yarn](https://yarnpkg.com/lang/en/docs
 After that, you can either directly download the zip file to your pc and extract its contents or simply use the command `git clone https://github.com/llKieferll/repofinder.git`. Regardless of which, navigate to the same folder that contains the file `package.json` and then use the following commands:
 
 ```yarn```
+
 ```yarn serve```
 
 The first command, `yarn`, will install everything needed. After that, `yarn serve` will start everything up using the vue cli 3 service. After everything is compiled successfully, open your browser and access the localhost url (http://localhost:8080)
