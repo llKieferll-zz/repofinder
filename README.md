@@ -1,5 +1,3 @@
-# payworks
-
 ## Project setup
 ```
 yarn install
