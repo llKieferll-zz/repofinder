@@ -3,6 +3,22 @@
     <v-slide-y-transition leave-absolute group>
       <div
         v-if="!!repositoryList.length"
+        key="back"
+      >
+        <v-tooltip top>
+          <v-btn
+            icon
+            slot="activator"
+            color="primary"
+            :to="{ name: 'Search' }"
+          >
+            <v-icon>arrow_back</v-icon>
+          </v-btn>
+          <span>Back to search</span>
+        </v-tooltip>
+      </div>
+      <div
+        v-if="!!repositoryList.length"
         key="tip"
       >
         <span
@@ -47,17 +63,21 @@
       :list="repositoryList"
       class="pt-4"
     />
-    <v-slide-y-transition>
-      <div v-if="!!repositoryList.length">
+    <v-slide-y-transition group>
+      <div
+        v-if="!!repositoryList.length"
+        key="pagination"
+      >
         <v-pagination
           v-model="page"
           class="pt-4"
           :length="totalPages"
         />
       </div>
-    </v-slide-y-transition>
-    <v-slide-y-transition leave-absolute>
-      <div v-if="!!repositoryList.length">
+      <div
+        v-if="!!repositoryList.length"
+        key="tip"
+      >
         <span class="subheading">
           Yup, pages here too for your comfort
           <v-icon>mood</v-icon>

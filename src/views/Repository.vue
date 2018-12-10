@@ -50,7 +50,7 @@
         >
           subdirectory_arrow_right
         </v-icon>
-        Branches
+        {{repository}} branches
         <v-icon
           style="transform: rotate(-90deg);"
           :size="$vuetify.breakpoint.smAndDown ? '14px' : '28px'"
@@ -114,7 +114,7 @@ export default {
         this.$root.$addToLoader(`Fetching branches of "${repository}"`)
         let branchListResponse = {}
         if (organization.has_repository_projects) {
-          branchListResponse = await this.$axios.get(`repos/${organization.name}/${repository}/branches`, {
+          branchListResponse = await this.$axios.get(`repos/${organization.login}/${repository}/branches`, {
             params: {
               page: page
             }
