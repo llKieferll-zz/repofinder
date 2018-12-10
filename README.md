@@ -3,7 +3,7 @@ A coding challenge that should be done in 7 days. Had to make it in 3,5 ~ 4 days
 
 Before anything, make sure you have both [yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable) and [node](https://nodejs.org/en/download/) installed before using these.
 
-After that, you can either directly download the zip file to your pc and extract its contents or simply use the command `git clone https://github.com/llKieferll/repofinder.git`. Regardless of which, navigate to the same folder that contains the file `package.json` and then use the following commands:
+After that, you can either directly download the zip file to your pc and extract its contents or simply use the command `git clone https://github.com/llKieferll/repofinder.git`. Regardless of which, navigate to the root folder of the project (the one that contains the file called `package.json`) and then use the following commands:
 
 ```yarn```
 
