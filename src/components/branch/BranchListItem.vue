@@ -7,7 +7,7 @@
       <v-list-tile-content>
         <v-list-tile-title class="title">{{branch.name}}</v-list-tile-title>
         <v-list-tile-sub-title v-if="$vuetify.breakpoint.smAndUp">
-          <span class="caption">{{branch.commit.message}}</span>
+          <span class="caption">{{branch.commit.message ? branch.commit.message : ' No message (are you logged in?) ' }}</span>
         </v-list-tile-sub-title>
         <v-list-tile-sub-title>
           <v-chip
@@ -17,7 +17,7 @@
             text-color="#333"
           >
           </v-chip>
-          <span class="caption">{{branch.commit.author}}</span>
+          <span class="caption">{{branch.commit.author ? branch.commit.author : ' No author (are you logged in?) ' }}</span>
         </v-list-tile-sub-title>
       </v-list-tile-content>
     </v-list-tile>

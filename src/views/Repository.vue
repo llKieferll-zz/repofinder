@@ -64,18 +64,31 @@ export default {
       if (this.organization.has_repository_projects) {
         branchListResponse = await this.$axios.get(`repos/${this.organization.name}/${this.repository}/branches`)
       }
-      const mappedPromises = branchListResponse.data.map(async (b) => {
-        const lastCommit = await this.$axios.get(b.commit.url)
-        return {
-          name: b.name,
-          commit: {
-            sha: lastCommit.data.sha,
-            author: lastCommit.data.commit.author.name,
-            message: lastCommit.data.commit.message
+      if (process.env.VUE_APP_OAUTH_TOKEN) {
+        const mappedPromises = branchListResponse.data.map(async (b) => {
+          const lastCommit = await this.$axios.get(b.commit.url)
+          return {
+            name: b.name,
+            commit: {
+              sha: lastCommit.data.sha,
+              author: lastCommit.data.commit.author.name,
+              message: lastCommit.data.commit.message
+            }
           }
-        }
-      })
-      this.branchList = await Promise.all(mappedPromises)
+        })
+        this.branchList = await Promise.all(mappedPromises)
+      } else {
+        this.branchList = branchListResponse.data.map((b) => {
+          return {
+            name: b.name,
+            commit: {
+              sha: b.commit.sha,
+              author: null,
+              message: null
+            }
+          }
+        })
+      }
     } catch (error) {
       if (error.response.status === 404) {
         this.$root.$addToSnackbar(`No branches found in "${this.repository}". Is that even the correct repo name?`, 'error')
