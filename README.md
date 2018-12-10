@@ -11,6 +11,8 @@ The first command, "yarn", will install everything needed. After that, "yarn ser
 
 Make sure you have both [yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable) and [node](https://nodejs.org/en/download/) installed before using these.
 
+The project is live at [https://adoring-pasteur-698913.netlify.com/](https://adoring-pasteur-698913.netlify.com/)
+
 # Considerations
 
 - Decided to use [Vue](https://vuejs.org/) with [Vuetify](https://vuetifyjs.com/en/) as both are amazing tools.
