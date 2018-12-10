@@ -6,6 +6,7 @@
     >
       <v-list-tile-content>
         <v-list-tile-title class="title">{{branch.name}}</v-list-tile-title>
+        <!-- Hide the commit message to avoide too many details on small screens -->
         <v-list-tile-sub-title v-if="$vuetify.breakpoint.smAndUp">
           <span class="caption">{{branch.commit.message ? branch.commit.message : ' No message (are you logged in?) ' }}</span>
         </v-list-tile-sub-title>

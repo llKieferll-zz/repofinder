@@ -64,6 +64,7 @@ export default {
   },
 
   mounted () {
+    // Referencing the add and remove functions so they can be used globally
     this.$root.$addToLoader = this.add
     this.$root.$removeFromLoader = this.remove
   }

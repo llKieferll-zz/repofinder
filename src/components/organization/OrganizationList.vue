@@ -16,7 +16,7 @@
         tag="div"
       >
         <v-flex
-          v-for="(organization, index) in sortedList"
+          v-for="(organization, index) in list"
           class="pa-2"
           xs12
           sm6
@@ -33,22 +33,10 @@
 <script>
 export default {
 
-  data: () => ({
-    propertyToSort: 'score'
-  }),
-
   props: {
     list: {
       type: Array,
       required: true
-    }
-  },
-
-  computed: {
-    sortedList: function () {
-      if (this.propertyToSort === 'login') return this.list.slice().sort((a, b) => a.login.toLowerCase().localeCompare(b.login.toLowerCase()))
-      if (this.propertyToSort === 'score') return this.list.slice().sort((a, b) => a.score - b.score)
-      return this.list.slice().sort((a, b) => a.score - b.score)
     }
   },
 

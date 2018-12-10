@@ -82,6 +82,7 @@ export default {
   async mounted () {
     try {
       this.$root.$addToLoader(`Fetching languages of repositories`)
+      // Using Set to automatically remove dupes and avoid inserting languages set to "None"
       this.items = [...new Set(this.repositoryList.reduce((previous, current) => {
         if (current.language !== 'None') previous.push(current.language)
         return previous

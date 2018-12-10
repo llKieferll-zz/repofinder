@@ -11,6 +11,7 @@
           <span class="caption">{{repository.description}}</span>
         </v-list-tile-sub-title>
         <v-list-tile-sub-title>
+          <!-- Using a chip to make a small, colored ball -->
           <v-chip
             disabled
             color="info"

@@ -37,6 +37,8 @@ export default {
       closeButtonColor = 'white',
       closeButtonIconColor = 'black'
     ) {
+      // Adds a message to the queue and if there were no messages before adding this one,
+      // set the parameters accordingly so it will be shown right away
       this.messageQueue.push({ message, snackbarColor, closeButtonColor, closeButtonIconColor })
       if (!this.snackbar) {
         let { message, snackbarColor, closeButtonColor, closeButtonIconColor } = this.messageQueue.shift()
@@ -58,6 +60,11 @@ export default {
           this.snackbarColor = snackbarColor
           this.closeButtonColor = closeButtonColor
           this.closeButtonIconColor = closeButtonIconColor
+          // nextTick triggers when the DOM finishes updating.
+          // This code will trigger when a snackbar started to move away to disappear.
+          // In this case, we set the data for the next snackbar in the queue and nextTick will trigger
+          // when the snackbar finished disappearing When this happens, we show the
+          // next one
           this.$nextTick(() => { this.snackbar = true })
         }
       }
