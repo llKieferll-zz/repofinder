@@ -41,4 +41,6 @@ With that, the limit of requests able to be made is much higher and, because of 
 
 - Fun challenge but I'm sure I would feel and perform better if it wasn't for the time constraint.
 
+- Still have the feeling that for the repositories and branches lists, the information could be better positioned, as it seems to me that things are a little bit cramped together.
+
 - Intended to, after finishing the functionalities, make them all REST, with everything being based on the URLs themselves. Will probably do that later on even after the challenge is over. I simply feel bothered when leaving something incomplete.
