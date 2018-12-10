@@ -1,32 +1,20 @@
-## Project setup
-```
-yarn install
-```
+# About
+A coding challenge that should be done in 7 days. Had to make it in 3,5 ~ 4 days, over half of it in a single weekend, since I wasn't able to start the challenge when it was sent. The goal was not to finish it perfectly, but to give a grasp of the coding style and how things are done.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Get the files on your pc and, when inside that folder, use the following commands:
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+```yarn```
 
-### Run your tests
-```
-yarn run test
-```
+```yarn serve```
 
-### Lints and fixes files
-```
-yarn run lint
-```
+The first command, "yarn", will install everything needed. After that, "yarn serve" will start everything up using the vue cli 3 service. After everything is compiled successfully, open your browser and access the localhost url (http://localhost:8080)
 
-### Run your unit tests
-```
-yarn run test:unit
-```
+Make sure you have both [yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable) and [node](https://nodejs.org/en/download/) installed before using these.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Considerations
+
+- Decided to use [Vue](https://vuejs.org/) with [Vuetify](https://vuetifyjs.com/en/) as both are amazing tools.
+
+- Lack of time completely cut down any kind of unit testing.
+
+- Fun challenge but I'm sure I would feel and perform better if it wasn't for the time constraint.
