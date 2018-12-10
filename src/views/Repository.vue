@@ -105,7 +105,7 @@ export default {
         }
         // We only get further data from branches if there is an authentication token.
         // The reason is because one request would be made for each branch in the list
-        // and the number of request for unauthenticated users is very limited
+        // and the number of requests allowed for unauthenticated users is very limited
         if (process.env.VUE_APP_OAUTH_TOKEN) {
           this.$root.$addToLoader(`Fetching further information from each branch`)
           const mappedPromises = branchListResponse.data.map(async (b) => {

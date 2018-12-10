@@ -33,6 +33,7 @@
         key="controls"
       >
         <v-divider />
+        <!-- For each event emmited, we fetch the repositories while setting the correspondent variable -->
         <RepositoryListSortControl
           @changeSort="fetchRepositories(organization, 1, sort = $event, order, language)"
           @changeOrder="fetchRepositories(organization, 1, sort, order = $event, language)"
