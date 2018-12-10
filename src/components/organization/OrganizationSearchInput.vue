@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit.prevent="$emit('search', orgSearchInput)">
+  <v-form @submit.prevent="searchedOnce = true; $emit('search', orgSearchInput)">
     <v-layout justify-center>
       <v-flex
         xs12
@@ -15,11 +15,11 @@
           v-model="orgSearchInput"
           label="Search for organizations"
           append-icon="search"
-          @click:append="$emit('search', orgSearchInput)"
+          @click:append="searchedOnce = true; $emit('search', orgSearchInput)"
           @focus="inputFocused = false"
           @blur="inputFocused = true"
         />
-        <v-slide-y-transition leave-absolute>
+        <v-slide-y-transition leave-absolute v-if="$vuetify.breakpoint.mdAndUp">
           <span
             v-if="inputFocused && !orgSearchInput.length && !searchedOnce"
             class="subheading"

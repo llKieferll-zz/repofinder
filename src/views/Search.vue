@@ -20,7 +20,7 @@
             v-show="!!organizationList.length"
             class="subheading"
           >
-            Or filter results here <v-icon small>arrow_forward</v-icon>
+            Filter results here <v-icon small>arrow_forward</v-icon>
             <v-btn
               color="primary"
               icon
@@ -37,7 +37,7 @@
         >
           <FilterInput @input="filterInput = $event" />
           <span class="subheading">
-            Or search again here <v-icon small>arrow_forward</v-icon>
+            Search again here <v-icon small>arrow_forward</v-icon>
             <v-btn
               color="primary"
               icon
@@ -55,18 +55,8 @@
         >
           <v-divider class="my-3" />
         </div>
-        <div
-          v-if="!!organizationList.length"
-          key="tip"
-        >
-          <span
-            class="subheading"
-            key="1"
-          >
-            Don't forget to check more pages
-            <v-icon>mood</v-icon>
-          </span>
-        </div>
+      </v-slide-y-transition>
+      <v-slide-y-transition leave-absolute group class="text-xs-center">
         <div
           v-if="!!organizationList.length"
           key="pagination"

@@ -12,19 +12,25 @@
     >
       <v-toolbar-title>Menu</v-toolbar-title>
     </v-toolbar>
-
     <v-divider />
-
     <v-list
       dense
       class="pt-0"
     >
-      <v-list-tile>
+      <v-list-tile :to="{ name: 'Home' }">
         <v-list-tile-action>
-          <v-icon color="primary">person</v-icon>
+          <v-icon color="primary">home</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>Menu item</v-list-tile-title>
+          <v-list-tile-title>Home</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile :to="{ name: 'Search' }">
+        <v-list-tile-action>
+          <v-icon color="primary">search</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Search</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>

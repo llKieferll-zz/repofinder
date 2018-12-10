@@ -19,18 +19,6 @@
       </div>
       <div
         v-if="!!branchList.length"
-        key="tip"
-      >
-        <span
-          class="subheading"
-          key="1"
-        >
-          Don't forget to check more pages
-          <v-icon>mood</v-icon>
-        </span>
-      </div>
-      <div
-        v-if="!!branchList.length"
         key="pagination"
       >
         <v-pagination
@@ -73,15 +61,6 @@
           class="pt-4"
           :length="totalPages"
         />
-      </div>
-      <div
-        v-if="!!branchList.length"
-        key="tip"
-      >
-        <span class="subheading">
-          Yup, pages here too for your comfort
-          <v-icon>mood</v-icon>
-        </span>
       </div>
     </v-slide-y-transition>
   </div>

@@ -19,24 +19,27 @@
       </div>
       <div
         v-if="!!repositoryList.length"
-        key="tip"
-      >
-        <span
-          class="subheading"
-          key="1"
-        >
-          Don't forget to check more pages
-          <v-icon>mood</v-icon>
-        </span>
-      </div>
-      <div
-        v-if="!!repositoryList.length"
         key="pagination"
       >
         <v-pagination
           v-model="page"
           class="pb-4"
           :length="totalPages"
+        />
+      </div>
+      <div
+        v-if="!!repositoryList.length"
+        class="pb-4"
+        key="controls"
+      >
+        <v-divider />
+        <RepositoryListSortControl
+          @changeSort="fetchRepositories(organization, 1, sort = $event, order, language)"
+          @changeOrder="fetchRepositories(organization, 1, sort, order = $event, language)"
+          @changeLanguage="fetchRepositories(organization, 1, sort, order, language = $event)"
+          :organization="organization"
+          :repositoryList="repositoryList"
+          class="pb-3"
         />
       </div>
       <span
@@ -63,7 +66,7 @@
       :list="repositoryList"
       class="pt-4"
     />
-    <v-slide-y-transition group>
+    <v-slide-y-transition group leave-absolute>
       <div
         v-if="!!repositoryList.length"
         key="pagination"
@@ -73,15 +76,6 @@
           class="pt-4"
           :length="totalPages"
         />
-      </div>
-      <div
-        v-if="!!repositoryList.length"
-        key="tip"
-      >
-        <span class="subheading">
-          Yup, pages here too for your comfort
-          <v-icon>mood</v-icon>
-        </span>
       </div>
     </v-slide-y-transition>
   </div>
@@ -94,7 +88,10 @@ export default {
   data: () => ({
     repositoryList: [],
     totalPages: 1,
-    page: 1
+    page: 1,
+    sort: 'stars',
+    order: 'desc',
+    language: ''
   }),
 
   props: {
@@ -105,16 +102,16 @@ export default {
   },
 
   methods: {
-    fetchRepositories: async function (organization, page) {
+    fetchRepositories: async function (organization, page, sort = this.sort, order = this.order, language = this.language) {
       try {
         this.$root.$addToLoader(`Fetching repositories of "${organization.name}"`)
         let repositoriesResponse = {}
         if (organization.has_repository_projects) {
           repositoriesResponse = await this.$axios.get(`search/repositories`, {
             params: {
-              q: `user:${organization.login} fork:true`,
-              sort: 'stars',
-              order: 'desc',
+              q: `user:${organization.login} fork:true${language ? ' language:' + language : ''}`,
+              sort: sort,
+              order: order,
               page: page
             }
           })
@@ -157,7 +154,8 @@ export default {
   },
 
   components: {
-    RepositoryList: () => import('@/components/repository/RepositoryList')
+    RepositoryList: () => import('@/components/repository/RepositoryList'),
+    RepositoryListSortControl: () => import('@/components/repository/RepositoryListSortControl')
   }
 }
 </script>

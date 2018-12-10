@@ -19,7 +19,7 @@
           @blur="inputFocused = false"
           @input="inputDirty = true; $emit('input', input)"
         />
-        <v-slide-y-transition leave-absolute>
+        <v-slide-y-transition leave-absolute v-if="$vuetify.breakpoint.mdAndUp">
           <span
             v-if="!inputFocused && !inputDirty"
             class="subheading"
